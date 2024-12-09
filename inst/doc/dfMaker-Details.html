@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>dfMaker Details</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">dfMaker Details</h1>
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>The <code>dfMaker()</code> function processes and organizes keypoints
+data generated by <strong>‘OpenPose’</strong>. Additionally, the
+function applies a linear transformation to the original coordinates
+provided by ‘OpenPose’, enabling analysis in a custom coordinate system
+defined by the user.</p>
+<p>This transformation includes selecting a reference point as the
+origin and two additional keypoints to define the new base vectors. This
+is particularly useful for aligning and scaling pose data across
+different contexts or frames.</p>
+<p>The <code>dfMaker()</code> function is designed to handle large-scale
+datasets efficiently, providing structured outputs in formats like
+Parquet and CSV for seamless integration into data pipelines.</p>
+<div id="parameter-explanation" class="section level3">
+<h3>Parameter Explanation</h3>
+<ul>
+<li><strong><code>input.folder</code></strong>: Path to the folder
+containing ‘OpenPose’ JSON files.</li>
+<li><strong><code>config.path</code></strong>: Path to the configuration
+file for extracting metadata (optional).</li>
+<li><strong><code>output.file</code></strong>: Name of the output
+file.</li>
+<li><strong><code>output.path</code></strong>: Directory where the
+output file will be saved.</li>
+<li><strong><code>no_save</code></strong>: If <code>TRUE</code>, does
+not save the result to a file.</li>
+<li><strong><code>fast_scaling</code></strong>: If <code>TRUE</code>,
+uses fast scaling for transformation.</li>
+<li><strong><code>transformation_coords</code></strong>: Numeric vector
+of length 4 specifying the transformation coordinates.</li>
+</ul>
+</div>
+</div>
+<div id="additional-details" class="section level2">
+<h2>Additional Details</h2>
+<p>The function depends on the <strong><code>arrow</code></strong>
+package for efficient reading and writing of JSON and Parquet files.
+Make sure you have it installed:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;arrow&quot;</span>)</span></code></pre></div>
+<div id="linear-transformation-in-dfmaker" class="section level3">
+<h3>Linear Transformation in <code>dfMaker()</code></h3>
+<p>The <code>dfMaker()</code> function applies a linear transformation
+to normalize and align keypoints data within a custom coordinate system.
+This transformation standardizes poses across different frames or
+individuals by defining specific keypoints as the origin and base
+vectors.</p>
+<div id="fast-scaling-mode-fast_scaling-true" class="section level4">
+<h4>Fast Scaling Mode (<code>fast_scaling = TRUE</code>)</h4>
+<p>When <code>fast_scaling = TRUE</code>, the transformation is
+simplified and uses only the <strong>pose keypoints</strong> (the first
+set of keypoints). This results in faster computation since it avoids
+extra references.</p>
+<p><strong>Steps:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Define the Origin (<code>o_point</code>):</strong></p>
+<ul>
+<li>Select a keypoint to serve as the origin <span class="math inline">\((0, 0)\)</span> in the new coordinate system.</li>
+<li>Denote the coordinates of the origin as <span class="math inline">\((x_{\text{origin}},
+y_{\text{origin}})\)</span>.</li>
+</ul></li>
+<li><p><strong>Calculate the Primary Base Vector (<span class="math inline">\(\mathbf{v_i}\)</span>):</strong></p>
+<ul>
+<li>Choose a keypoint (<code>i_point</code>) to define the primary base
+vector.</li>
+<li>Compute: <span class="math display">\[
+\mathbf{v_i} = (x_i, y_i) - (x_{\text{origin}}, y_{\text{origin}})
+\]</span> where <span class="math inline">\((x_i, y_i)\)</span> are the
+coordinates of <code>i_point</code>.</li>
+</ul></li>
+<li><p><strong>Compute the Scaling Factor (<code>s</code>):</strong></p>
+<ul>
+<li>The scaling factor is the x-component of <span class="math inline">\(\mathbf{v_i}\)</span>: <span class="math display">\[
+s = v_{i,x}
+\]</span></li>
+<li>This factor scales the keypoints along the x-axis.</li>
+</ul></li>
+<li><p><strong>Apply the Transformation:</strong></p>
+<ul>
+<li><p>For each keypoint <span class="math inline">\((x, y)\)</span>,
+compute the transformed coordinates:</p>
+<p><span class="math display">\[
+x&#39; = \frac{x - x_{\text{origin}}}{s}, \quad y&#39; = -\frac{y -
+y_{\text{origin}}}{s}
+\]</span></p></li>
+<li><p>The y-coordinate is negated to adjust for coordinate system
+differences (e.g., image coordinates have the y-axis pointing
+downwards).</p></li>
+</ul></li>
+</ol>
+<p><strong>Summary Equation:</strong></p>
+<p><span class="math display">\[
+\begin{cases}
+x&#39; = \dfrac{x - x_{\text{origin}}}{s} \\
+y&#39; = -\dfrac{y - y_{\text{origin}}}{s}
+\end{cases}
+\]</span></p>
+</div>
+<div id="full-transformation-mode-fast_scaling-false" class="section level4">
+<h4>Full Transformation Mode (<code>fast_scaling = FALSE</code>)</h4>
+<p>When <code>fast_scaling = FALSE</code>, the transformation uses both
+primary and secondary base vectors to perform a full affine
+transformation, which can handle rotations and scaling in both axes.</p>
+<p><strong>Additional Steps:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Calculate the Secondary Base Vector (<span class="math inline">\(\mathbf{v_j}\)</span>):</strong></p>
+<ul>
+<li><p>If <code>i_point</code> and <code>j_point</code> are
+different:</p>
+<p><span class="math display">\[
+\mathbf{v_j} = (x_j, y_j) - (x_{\text{origin}}, y_{\text{origin}})
+\]</span></p></li>
+<li><p>If <code>i_point</code> and <code>j_point</code> are the same (to
+maintain orthogonality):</p>
+<p><span class="math display">\[
+\mathbf{v_j} = (-v_{i,y}, v_{i,x})
+\]</span></p>
+<p>This computes a vector perpendicular to <span class="math inline">\(\mathbf{v_i}\)</span>.</p></li>
+</ul></li>
+<li><p><strong>Construct the Transformation Matrix (<span class="math inline">\(M_t\)</span>):</strong></p>
+<p><span class="math display">\[
+M_t = \begin{pmatrix} v_{i,x} &amp; v_{j,x} \\ v_{i,y} &amp; v_{j,y}
+\end{pmatrix}
+\]</span></p></li>
+<li><p><strong>Compute the Inverse Transformation Matrix (<span class="math inline">\(M_t^{-1}\)</span>) Using Cramer’s
+Rule:</strong></p>
+<ul>
+<li><p><strong>Determinant:</strong></p>
+<p><span class="math display">\[
+\det(M_t) = v_{i,x} \cdot v_{j,y} - v_{j,x} \cdot v_{i,y}
+\]</span></p></li>
+<li><p><strong>Inverse Matrix:</strong></p>
+<p><span class="math display">\[
+M_t^{-1} = \frac{1}{\det(M_t)} \begin{pmatrix} v_{j,y} &amp; -v_{j,x} \\
+-v_{i,y} &amp; v_{i,x} \end{pmatrix}
+\]</span></p></li>
+</ul></li>
+<li><p><strong>Apply the Transformation:</strong></p>
+<ul>
+<li><p>For each keypoint <span class="math inline">\((x, y)\)</span>,
+compute the relative position:</p>
+<p><span class="math display">\[
+\begin{pmatrix} x_{\text{rel}} \\ y_{\text{rel}} \end{pmatrix} =
+\begin{pmatrix} x - x_{\text{origin}} \\ y - y_{\text{origin}}
+\end{pmatrix}
+\]</span></p></li>
+<li><p>Transform the coordinates:</p>
+<p><span class="math display">\[
+\begin{pmatrix} x&#39; \\ y&#39; \end{pmatrix} = M_t^{-1} \cdot
+\begin{pmatrix} x_{\text{rel}} \\ y_{\text{rel}} \end{pmatrix}
+\]</span></p></li>
+</ul></li>
+</ol>
+</div>
+<div id="example-applied-in-the-function" class="section level4">
+<h4>Example Applied in the Function</h4>
+<p>Using <code>transformation_coords = c(1, 1, 5, 5)</code> and
+<code>fast_scaling = TRUE</code>:</p>
+<ul>
+<li><strong>Origin (<code>o_point = 1</code>):</strong> Keypoint index
+1.</li>
+<li><strong>Primary Base Vector (<code>i_point = 5</code>):</strong>
+Keypoint index 5.</li>
+<li><strong>Secondary Base Vector (<code>j_point = 5</code>):</strong>
+Same as <code>i_point</code>, so <span class="math inline">\(\mathbf{v_j}\)</span> is perpendicular to <span class="math inline">\(\mathbf{v_i}\)</span>.</li>
+</ul>
+<p><span class="math display">\[
+\begin{cases}
+x&#39; = \dfrac{x - x_{\text{origin}}}{v_{i,x}} \\
+y&#39; = -\dfrac{y - y_{\text{origin}}}{v_{i,x}}
+\end{cases}
+\]</span></p>
+<p><strong>Implications:</strong></p>
+<ul>
+<li>The x-coordinate is scaled to establish a unit length along the
+x-axis.</li>
+<li>The y-coordinate is scaled and inverted to maintain proportion and
+adjust for coordinate orientation.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="error-handling" class="section level2">
+<h2>Error Handling</h2>
+<ul>
+<li>If the JSON files do not have the expected format or are empty, the
+function will skip them and display a message.</li>
+<li>If <code>output.file</code> is <code>NULL</code> and multiple unique
+<code>id</code> values are found, the function will generate an error
+requesting an explicit file name.</li>
+</ul>
+</div>
+<div id="notes-on-newsscape-data" class="section level2">
+<h2>Notes on NewsScape Data</h2>
+<p>If you are working with data from the <strong>UCLA NewsScape</strong>
+archive, you can use the <code>config.path</code> parameter to specify
+how to extract metadata from the filenames.</p>
+<p><strong>Example Configuration File
+(<code>config.json</code>):</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;extract_datetime&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;extract_time&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;extract_exp_search&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;extract_country_code&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;extract_network_code&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;extract_program_name&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;extract_time_range&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;timezone&quot;</span><span class="fu">:</span> <span class="st">&quot;America/Los_Angeles&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define paths to example data included with the package</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>input_folder <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/eg/o1&quot;</span>, <span class="at">package =</span> <span class="st">&quot;multimolang&quot;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>output_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">&quot;processed_data.csv&quot;</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>output_path <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()  <span class="co"># Use a temporary directory for writing output during examples</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Run dfMaker()</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">dfMaker</span>(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">input.folder =</span> input_folder,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">output.file =</span> output_file,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">output.path =</span> output_path,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">no_save =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">fast_scaling =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">transformation_coords =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows of the resulting data frame</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>The<code>dfMaker()</code> function simplifies the processing of large
+volumes of keypoints data, enabling easier integration into data
+analysis and machine learning workflows. By providing both fast scaling
+and full transformation modes, it offers flexibility in how keypoints
+are normalized and aligned, catering to various research needs in
+different field studies. Whether working with extensive datasets from
+sources like the UCLA ‘NewsScape’ archive or integrating into complex
+data pipelines, <code>dfMaker()</code> ensures that keypoints data is
+consistently and efficiently prepared for subsequent analysis.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ol style="list-style-type: decimal">
+<li><p><strong>‘OpenPose’</strong>: Cao, Z., Hidalgo, G., Simon, T.,
+Wei, S.-E., &amp; Sheikh, Y. (2019). “OpenPose: Realtime Multi-Person 2D
+Pose Estimation Using Part Affinity Fields.” <em>IEEE Transactions on
+Pattern Analysis and Machine Intelligence</em>, 43(1), 172–186. <a href="https://doi.org/10.1109/TPAMI.2019.2929257" class="uri">https://doi.org/10.1109/TPAMI.2019.2929257</a></p></li>
+<li><p><strong>NewsScape and the Distributed Little Red Hen
+Lab</strong>: Uhrig, P. (2018). “NewsScape and the Distributed Little
+Red Hen Lab: A Digital Infrastructure for the Large-Scale Analysis of TV
+Broadcasts.” In <em>Anglistentag 2017 in Regensburg: Proceedings</em>,
+pp. 99–114. Wissenschaftlicher Verlag Trier.</p></li>
+<li><p><strong>Apache Arrow</strong>: Apache Arrow (2020). “Apache
+Arrow: A Cross-Language Development Platform for In-Memory Data.” <a href="https://arrow.apache.org/" class="uri">https://arrow.apache.org/</a></p></li>
+</ol>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
